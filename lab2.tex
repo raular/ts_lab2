@@ -1,0 +1,209 @@
+\documentclass[11pt,a4]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+
+\usepackage{geometry} %% Marges
+\geometry{
+    a4paper,
+    left=25mm,
+    right=25mm,
+    top=25mm,
+    bottom=25mm,
+}
+
+%% Simbols, AMS, etc
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{esint}
+\usepackage{braket}
+
+%% Titols, seccions, etc
+
+\usepackage{titling} %% Permet cridar thetitle, etc
+
+%% Enumeracions, hipervincles
+
+\usepackage{enumerate}
+\usepackage{hyperref}
+
+%% Text Lipsum
+\usepackage{lipsum}
+
+%% Colors i codi
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{color}
+\definecolor{blueblack}{rgb}{0,0,0.5}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blueblack,
+    urlcolor=black
+}
+\usepackage{listings}
+\lstset{aboveskip=15pt,belowskip=15pt}
+\renewcommand{\lstlistingname}{Codi} % Listing -> Codi
+\renewcommand{\ttdefault}{cmtt} % Bold tt font
+
+%% Definicio d'alguns colors per al codi lstlisting
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\bfseries\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle} % Escollim mystyle com a estil per defecte
+
+%% Teoremes i estil
+
+\makeatletter
+\newtheoremstyle{thmstyle}
+  {5pt}% space before
+  {5pt}% space after
+  {\addtolength{\@totalleftmargin}{3.5em}
+   \addtolength{\linewidth}{-3.5em}
+   \parshape 1 2em \linewidth \it}% body font
+  {0pt}% indent
+  {\bfseries}% header font
+  {.}% punctuation
+  {.5em}% after theorem header
+  {}% header specification (empty for default)
+\makeatother
+
+\numberwithin{equation}{section}
+  \theoremstyle{thmstyle}
+  \newtheorem{Definition}{Definició}
+  \theoremstyle{thmstyle}
+  \newtheorem*{Theorem}{Teorema}
+  \theoremstyle{thmstyle}
+  \newtheorem{Proposition}{Proposició}
+  \theoremstyle{thmstyle}
+  \newtheorem{Corollary}{Corol·lari}
+  \theoremstyle{thmstyle}
+  \newtheorem{Lemma}{Lema}
+  \theoremstyle{thmstyle}
+  \newtheorem{question}{Qüestió}
+  
+%% Comandes
+
+\newcommand{\bs}{\mathbf}
+\newcommand{\mc}{\mathcal}
+\newcommand{\mb}{\mathbb}
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\Fourier}{\mc{F}}
+\newcommand{\salto}{\vspace{12pt} \noindent}
+\newcommand{\sinc}{\mathrm{sinc}\,}
+\newcommand{\IIR}{\mathrm{IIR}}
+
+%% PGF i TIKZ
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.5, width=15cm, height=10cm, scale only axis}
+
+%% Encapçalament i peu de pàgina
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thetitle}
+\fancyhead[RE,LO]{\theauthor}
+\fancyfoot[CE,CO]{}
+\fancyfoot[LE,RO]{\thepage}
+
+\title{Teoria del Senyal. Pràctica 1 de laboratori}
+\author{Eric Guisado, Raúl Alonso}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\noindent
+{\bf \LARGE \thetitle}
+
+\noindent
+\rule{\textwidth}{1pt}
+
+\vspace{15pt}
+
+\noindent
+{\Large \theauthor}
+\vspace{15pt}
+
+\noindent
+{\large Divendres 30 de setembre de 2016}
+\vspace{15pt}
+
+\tableofcontents
+
+\section{Estudi previ}
+\begin{question}
+Si el senyal d’entrada x[n] té longitud $L_x$ , indicar quina seria la longitud $L_y$ del
+senyal resultat del filtratge y[n] en funció de $L$ i $L_x$ . Indicar quantes multiplicacions s’han de
+fer per poder calcular les $L_y$ mostres del senyal de sortida mitjançant l’aplicació directa de
+l’equació de convolució suposant que $L_x > L$. Expressar aquest número de multiplicacions en
+funció de $L$ i $L_x$ . Calcular també el número de multiplicacions per mostra d’entrada (és a dir,
+el quocient entre el número total de multiplicacions necessàries i el número de mostres
+d’entrada $L_x$).
+\end{question}
+
+El senyal de sortida y[n] es calcula com 
+
+$$
+y[n]=\lbrace x\ast h\rbrace[n]=\sum\limits_{j=0}^{L-1} h[j]x[n-j]
+$$
+
+Suposem que el senyal $x[n]$ comença a $n=k$ i acaba a $n=k+L_x-1$. Els termes de la sortida $y[n]$ seran aquells per als quals hi ha algun $j\in\lbrace 0, 1, ..., L-1\rbrace$ tal que $n-j\in \lbrace k, k+1, ..., k+L_x-1\rbrace$, és a dir, $k\leqslant n-j \leqslant k+L_x-1 \Longleftrightarrow k+j\leqslant n \leqslant k+L_x-1+j$. Per tant, els termes de la sortida seran aquells amb $k\leqslant n \leq k+L_x+L-2$. Així doncs, la sortida té longitud $L+L_x-1$.
+
+Observem que podem escriure, per a $k\leqslant n \leq k+L_x+L-2$:
+
+$$
+y[n]=\lbrace x\ast h\rbrace[n]=\sum\limits_{j=\max{\lbrace 0, n-k-L_x+1\rbrace}}^{\min{\lbrace L-1,n-k\rbrace}} h[j]x[n-j] = 
+$$
+$$
+\begin{cases}
+\sum\limits_{j=0}^{n-k} h[j]x[n-j]  & \text{si $k \leqslant n \leqslant k + L - 1$} \\
+\sum\limits_{j=0}^{L-1} h[j]x[n-j]  & \text{si $k+L-1 < n < k + L_x - 1$} \\
+\sum\limits_{j=n-k-L_x+1}^{L-1} h[j]x[n-j]  & \text{si $k + L_x - 1 \leqslant n \leqslant k + L + L_x - 2$}
+\end{cases}
+$$
+
+Així, es dedueix que el nombre de multiplicacions que cal fer en aplicar directament l'equació de convolució és:
+$$
+2\sum\limits_{i=1}^{L} i + L(L_x - L - 1) = L(L+1)+L(L_x-L-1)=LL_x
+$$
+
+El nombre de multiplicacions per mostra d'entrada és $\frac{LL_x}{L_x}=L$.
+
+\begin{question}
+Respon a les següents preguntes:
+- Relacionar el número de blocs $P$ ($i=0,...,P-1$) amb $L_x$ i $M$.
+- Quin és el valor màxim de $M$ (donat el número de punts totals $N$ de cada bloc $x_i[n]$) per
+tal que la convolució circular en (1) coincideixi amb la convolució lineal en (2)?
+Expressar aquest valor màxim de $M$ en funció de $N$ i $L$.
+\end{question}
+
+Per tal que els senyals $X_i[n]$ comprenguin totes les mostres dels senyals 
+
+\end{document}
