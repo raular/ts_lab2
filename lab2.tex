@@ -159,13 +159,7 @@
 
 \section{Estudi previ}
 \begin{question}
-Si el senyal d’entrada x[n] té longitud $L_x$ , indicar quina seria la longitud $L_y$ del
-senyal resultat del filtratge y[n] en funció de $L$ i $L_x$ . Indicar quantes multiplicacions s’han de
-fer per poder calcular les $L_y$ mostres del senyal de sortida mitjançant l’aplicació directa de
-l’equació de convolució suposant que $L_x > L$. Expressar aquest número de multiplicacions en
-funció de $L$ i $L_x$ . Calcular també el número de multiplicacions per mostra d’entrada (és a dir,
-el quocient entre el número total de multiplicacions necessàries i el número de mostres
-d’entrada $L_x$).
+Si el senyal d’entrada x[n] té longitud $L_x$, indicar quina seria la longitud $L_y$ del senyal resultat del filtratge y[n] en funció de $L$ i $L_x$. Indicar quantes multiplicacions s’han de fer per poder calcular les $L_y$ mostres del senyal de sortida mitjançant l’aplicació directa de l’equació de convolució suposant que $L_x > L$. Expressar aquest número de multiplicacions en funció de $L$ i $L_x$. Calcular també el número de multiplicacions per mostra d’entrada (és a dir, el quocient entre el número total de multiplicacions necessàries i el número de mostres d’entrada $L_x$).
 \end{question}
 
 El senyal de sortida y[n] es calcula com 
@@ -198,12 +192,17 @@ El nombre de multiplicacions per mostra d'entrada és $\frac{LL_x}{L_x}=L$.
 
 \begin{question}
 Respon a les següents preguntes:
-- Relacionar el número de blocs $P$ ($i=0,...,P-1$) amb $L_x$ i $M$.
-- Quin és el valor màxim de $M$ (donat el número de punts totals $N$ de cada bloc $x_i[n]$) per
-tal que la convolució circular en (1) coincideixi amb la convolució lineal en (2)?
+\begin{enumerate}[a)]
+\item Relacionar el número de blocs $P$ ($i=0,...,P-1$) amb $L_x$ i $M$.
+\item Quin és el valor màxim de $M$ (donat el número de punts totals $N$ de cada bloc $x_i[n]$) per tal que la convolució circular en (1) coincideixi amb la convolució lineal en (2)?
 Expressar aquest valor màxim de $M$ en funció de $N$ i $L$.
+\end{enumerate}
 \end{question}
 
-Per tal que els senyals $X_i[n]$ comprenguin totes les mostres dels senyals 
+Per tal que els senyals $x_i[n]$ comprenguin totes les mostres dels senyals hem de tenir en compte que
+$$
+x = \begin{bmatrix} x[0] & x[1] & cdots & x[L_x - 1] \end{bmatrix}.
+$$
+Llavors, cal que donat un $x[k]$ qualsevol, amb $0 \leq k \leq L_x - 1$, existeixi $n \in \{0,\ldots,N - 1\}$ i $i \in \{0,\ldots,P - 1\}$ de manera que $x_i[n] = x[k]$, és a dir, de manera que $k = n + iM$. 
 
 \end{document}
