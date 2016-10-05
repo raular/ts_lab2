@@ -207,7 +207,7 @@ x[n + iM] & i = 0,\ldots,M - 1 \\
 0         & i = M, \ldots, N - 1
 \end{cases},
 $$
-i cadascuna d'aquestes es correspon amb el segment de $x$ que va des de $x[iM]$ fins a $x[i(M + 1) - 1]$, afegint-hi zeros fins que aquesta trama tingui mida $N$. Si volem que aquestes trames recorrin tot el senyal $x$, i que no n'hi hagi cap més que les necessàries, cal que el darrer $i$ que agafem contingui el darrer element de $x$, és a dir, per a $i = P - 1$ hi ha d'haver algun $n$, amb $0 \leq n \leq M - 1$, tal que $L_x - 1 = (P-1)M + n$. Cal, doncs, $(P-1)M\leqslant L_x - 1 \leqslant PM - 1$. Per tant, necessitem
+i cadascuna d'aquestes es correspon amb el segment de $x$ que va des de $x[iM]$ fins a $x[i(M + 1) - 1]$, afegint-hi zeros al darrere fins que aquesta trama tingui mida $N$. Si volem que aquestes trames recorrin tot el senyal $x$, i que no n'hi hagi cap més que les necessàries, cal que el darrer $i$ que agafem contingui el darrer element de $x$, és a dir, per a $i = P - 1$ hi ha d'haver algun $n$, amb $0 \leq n \leq M - 1$, tal que $L_x - 1 = (P-1)M + n$. Cal, doncs, $(P-1)M\leqslant L_x - 1 \leqslant PM - 1$. Per tant, necessitem
 $$
 \frac{L_x}{M}\leqslant P \leqslant \frac{L_x + M - 1}{M}.
 $$
