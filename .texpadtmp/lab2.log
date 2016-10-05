@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.12.2)  4 OCT 2016 09:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.12.2)  5 OCT 2016 12:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1158,7 +1158,7 @@ xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texl
 ive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texli
 ve/2014/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
 Output written on /Users/ericguisadobandres/ts_lab2/.texpadtmp/lab2.pdf (2 page
-s, 143577 bytes).
+s, 142846 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  67 compressed objects within 1 object stream
