@@ -239,4 +239,45 @@ $$
 \frac{2N\log_2 N + N}{M} = \frac{2N\log_2 N + N}{N-L+1} = \frac{2\log_2 N + 1}{1-\frac{L-1}{N}}
 $$
 
+
+\begin{question}
+Quina és l'expressió matemàtica corresponent a la DFT de $N$ punts d'un senyal sinusoïdal de pulsació discreta $\Omega_0=2\pi\frac{k_0}{N}$ (essent $k_0$ un número enter)?
+\end{question}
+
+En primer lloc, observem que podem suposar $k_0\in\lbrace 0,1,\cdots,N-1\rbrace$, ja que, si $k_0=qN+r$, amb $q\in\mathbb{Z}$ i $r\in\lbrace 0,1,\cdots,N-1\rbrace$, llavors:
+
+$$
+\sin(2\pi\frac{k_0}{N}n) = \sin(2\pi qn + 2\pi\frac{r}{N}n) = \sin(2\pi\frac{r}{N}n) \quad \forall n\in\mathbb{Z}.
+$$
+
+La DFT de $N$ punts del senyal $x[n]=\sin(2\pi\frac{k_0}{N}n)$, $n=0,1,\cdots, N-1$ ve donada per:
+
+$$X[k] = \sum\limits_{n=0}^{N-1}\sin(2\pi\frac{k_0}{N}n)e^{-j2\pi\frac{k}{N}n} = \sum\limits_{n=0}^{N-1}\Big(\frac{e^{j2\pi\frac{k_0}{N}n}-e^{-j2\pi\frac{k_0}{N}n}}{2j}\Big)e^{-j2\pi\frac{k}{N}n}=
+$$
+$$
+=\frac{1}{2j}\Big(\sum\limits_{n=0}^{N-1}e^{-j2\pi\frac{(k-k_0)}{N}n}+\sum\limits_{n=0}^{N-1}e^{-j2\pi\frac{(k+k_0)}{N}n}\Big)=
+$$
+$$
+\begin{cases}
+-jN & \text{si $k=k_0=N-k_0$ (només pot passar si $k_0 = N/2$)} \\
+-j\frac{N}{2} & \text{si $k=k_0\neq N-k_0$} \\
+-j\frac{N}{2} & \text{si $k=N-k_0\neq k_0$} \\
+0 & \text{altrament}
+\end{cases}
+$$
+En efecte, per a $k\in\lbrace 0,1,\cdots,N-1\rbrace$, $k\neq k_0$, $e^{-j2\pi\frac{(k-k_0)}{N}}\neq 1$, i per tant,
+$$
+\sum\limits_{n=0}^{N-1}e^{-j2\pi\frac{(k-k_0)}{N}n}=\frac{1-e^{-j2\pi\frac{(k-k_0)}{N}N}}{1-e^{-j2\pi\frac{(k-k_0)}{N}}} = 0,
+$$
+i, anàlogament, si $k\in\lbrace 0,1,\cdots,N-1\rbrace$, $k\neq N-k_0$,
+$$
+\sum\limits_{n=0}^{N-1}e^{-j2\pi\frac{(k+k_0)}{N}n}=\frac{1-e^{-j2\pi\frac{(k+k_0)}{N}N}}{1-e^{-j2\pi\frac{(k+k_0)}{N}}} = 0
+$$
+
+\begin{question}
+\end{question}
+
+\begin{question}
+El resultat d'aplicar zero-padding és que, com que el nombre de mostres de la DFT és més gran, tenim més informació sobre la
+\end{question}
 \end{document}
