@@ -1,0 +1,2 @@
+\select@language {catalan}
+\contentsline {section}{\numberline {1}Estudi previ}{1}{section.1}

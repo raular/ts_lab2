@@ -205,4 +205,30 @@ x = \begin{bmatrix} x[0] & x[1] & \cdots & x[L_x - 1] \end{bmatrix}.
 $$
 Llavors, cal que donat un $x[k]$ qualsevol, amb $0 \leq k \leq L_x - 1$, existeixi $n \in \{0,\ldots,N - 1\}$ i $i \in \{0,\ldots,P - 1\}$ de manera que $x_i[n] = x[k]$, és a dir, de manera que $k = n + iM$. 
 
+
+Per tal que la convolució circular coincideixi amb la convolució lineal s'ha de verificar, per a $n\in\lbrace 0, 1, \cdots, N-1 \rbrace$:
+
+$$
+\sum\limits_{j=0}^{L-1} h[j]x_i[n-j] = \sum\limits_{j=0}^{L-1} h[j]\sum\limits_{r=-\infty}^{\infty}x_i[n-j-rN]
+$$
+
+Per garantir-ho, imposem que, per a $r\neq 0$, $n\in\lbrace 0, 1, \cdots, N-1 \rbrace$, $j\in\lbrace 0, 1, \cdots, L-1 \rbrace$, $n-j-rN\not\in \lbrace 0, 1, \cdots, M-1 \rbrace$.
+
+Per a $r>0$, veiem que sempre es té $n-j-rN<0$. En efecte, el màxim valor d'aquesta expressió es dóna amb $r = 1$, $j=0$, $n=N-1$, i és $-1$.
+
+Per a $r>0$, veiem que sempre es té $n-j-rN\geqslant M$. En aquest cas, el mínim valor d'aquesta expressió es dóna amb $r = -1$, $j=L-1$ i $n=0$. S'ha de satisfer, doncs, $N-L+1\geqslant M$. Per tant, el valor màxim de $M$ és $N-L+1$.
+
+(Altrament, la convolució circular és la suma dels senyals que s'obtenen aplicant un retard de $rN$, amb $r\in\mathbb{Z}$. Per evitar encavallaments, la longitud de la convolució lineal ha de ser menor que $N$. Per tant, $L+M-1\leqslant N$.)
+
+\begin{question}
+Calcular el número de multiplicacions reals associat a aquest mètode per mostra d’entrada. Per això, considerar que es fa ús de l’algorisme FFT suposant que el número de punts de la DFT és una potència de 2, és a dir, $N=2^\nu$ (en aquest cas, el número de multiplicacions complexes tant de la DFT com de la IDFT és de $N\log_2 N$ multiplicacions complexes). Considerar també que el valor de $M$ és el valor màxim calculat
+a la qüestió 2.2. Per a calcular el número de multiplicacions per mostra d’entrada s’ha de calcular quantes multiplicacions són necessàries per a processar cada bloc i dividir aquest número per $M$, és a dir, pel número de mostres d’entrada que es processen a cada bloc. Expressar el resultat en funció de $L$ i $N$.
+\end{question}
+
+Per trobar la DFT d'un bloc i, després d'obtenir el producte $X_i[k]H[k]$, trobar-ne la transformada inversa calen $2N\log_2 N$ multiplicacions complexes. El producte $X_i[k]H[k]$ requereix $N$ multiplicacions complexes. El nombre d'operacions per mostra d'entrada és, doncs:
+
+$$
+\frac{2N\log_2 N + N}{M} = \frac{2N\log_2 N + N}{N-L+1} = \frac{2\log_2 N + 1}{1-\frac{L-1}{N}}
+$$
+
 \end{document}
