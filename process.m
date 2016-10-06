@@ -4,7 +4,7 @@ Lx = length(x);
 H = fft(h,N);
 M = N - L + 1;
 P = floor(Lx/M);
-y=zeros(1, P*M+N);
+y=zeros(1, L+Lx-1);
 for i = 0 : P - 1
     xb = x(i*M+1:(i+1)*M);
     yb = cc(xb,H);
@@ -12,6 +12,5 @@ for i = 0 : P - 1
 end
 xb = x(P*M+1:Lx);
 yb = cc(xb,H);
-y(P*M+1:P*M+N) = y(P*M+1:P*M+N) + yb;
-
+y(P*M+1:P+Lx-1) = y(P*M+1:P+Lx-1) + yb;
 end

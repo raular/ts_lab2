@@ -104,6 +104,8 @@
   \newtheorem{Lemma}{Lema}
   \theoremstyle{thmstyle}
   \newtheorem{question}{Qüestió}
+  \theoremstyle{thmstyle}
+  \newtheorem{activity}{Activitat}
   
 %% Comandes
 
@@ -226,7 +228,6 @@ $$
 $$
 Així doncs, $P$ ha de ser $P = \big\lceil\frac{L_x}{M}\big\rceil$.
 
-
 Per tal que la convolució circular coincideixi amb la convolució lineal s'ha de verificar, per a $n\in\lbrace 0, 1, \cdots, N-1 \rbrace$:
 
 $$
@@ -261,6 +262,34 @@ Creï la funció ``process''. Aquest funció tindrà la següent capçalera: {\t
 \end{question}
 
 Les dues funcions es troben en els fitxers {\tt cc.m} i {\tt process.m}, respectivament.
+
+\begin{lstlisting}[language=MATLAB]
+function[yb] = cc(xb,H)
+N = length(H);
+X = fft(xb,N);
+Y = X.*H;
+yb = ifft(Y,N);
+end
+\end{lstlisting}
+
+\begin{lstlisting}[language=MATLAB]
+function[y] = process(x,h,N)
+L = length(h);
+Lx = length(x);
+H = fft(h,N);
+M = N - L + 1;
+P = floor(Lx/M);
+y=zeros(1, L+Lx-1);
+for i = 0 : P - 1
+    xb = x(i*M+1:(i+1)*M);
+    yb = cc(xb,H);
+    y(i*M+1:i*M+N) = y(i*M+1:i*M+N) + yb;
+end
+xb = x(P*M+1:Lx);
+yb = cc(xb,H);
+y(P*M+1:P+Lx-1) = y(P*M+1:P+Lx-1) + yb;
+end
+\end{lstlisting}
 
 \begin{question}
 Quina és l'expressió matemàtica corresponent a la DFT de $N$ punts d'un senyal sinusoïdal de pulsació discreta $\Omega_0=2\pi\frac{k_0}{N}$ (essent $k_0$ un número enter)?
@@ -329,4 +358,45 @@ Expliqui qualitativament l’efecte d’aplicar “zero-padding” i una finestr
 El resultat d'aplicar zero-padding és que, com que el nombre de mostres de la DFT és més gran, tenim més informació sobre la transformada de Fourier contínua de la seqüència. En el cas del senyal sinusoïdal anterior, hi hauria més punts $X[k]$ diferents de zero.
 
 Aplicar diferents tipus de finestres, si es fa adientment, ens pot permetre resaltar certs aspectes del senyal o reduir el soroll degut a l'enfinestrament.
+
+\section{Activitat al laboratori}
+
+\subsection{Part 1}
+
+\begin{activity}
+Generi un vector aleatori $h$ de longitud $L=103$ mostres i un altre vector aleatori $x$ de longitud $L_x=107$. Per generar els vectors pot utilitzar la funció {\tt randn} de MATLAB. Mitjançant les instruccions {\tt tic} i {\tt toc} de MATLAB pot mesurar aproximadament el temps que passa entre l’execució de les dues instruccions. Compari la durada de l’execució de cada mètode per a diferents valors de $v$ on $N=2^v$ (essent $N$ una potència de 2 suficientment gran) i comprovi que els dos resultats de la convolució y1 i y2 són iguals.
+\end{activity}
+
+\begin{table}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+$v$       & temps de {\tt process} [s]  \\
+11        & 1.068             \\
+12        & 0.631             \\
+13        & 0.517             \\
+14        & 0.540             \\
+15        & 0.466             \\
+16        & 0.559             \\
+17        & 0.599             \\
+18        & 0.828             \\
+19        & 0.907             \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.7]
+\begin{axis}[
+  xlabel=$v$,
+  ylabel=temps de {\tt process} (s)]
+\addplot table [y=temps, x=v]{data.dat};
+\addlegendentry{temps}
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+Hem obtingut els dos productes de convolució $y_1$ i $y_2$ amb les funcions {\tt conv} i {\tt process} respectivament. Hem pogut comprovar que els dos vectors resultants són (pràcticament) iguals, ja que l'error quadràtic, és a dir, la norma 2 del vector $k = y_1 - y_2$ és, per a $v=15$, $\epsilon = \Vert k \Vert_2 = 1.1684 \cdot 10^{-10}$.
+
 \end{document}
