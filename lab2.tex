@@ -83,7 +83,7 @@
   {5pt}% space after
   {\addtolength{\@totalleftmargin}{3.5em}
    \addtolength{\linewidth}{-3.5em}
-   \parshape 1 2em \linewidth \it}% body font
+   \parshape 1 2em \linewidth \bfseries}% body font
   {0pt}% indent
   {\bfseries}% header font
   {.}% punctuation
@@ -118,8 +118,7 @@
 
 %% PGF i TIKZ
 
-\usepackage{tikz}
-\usepackage{pgfplots}
+\usepackage{tikz,pgfplots}
 \pgfplotsset{compat=1.5, width=15cm, height=10cm, scale only axis}
 
 %% Encapçalament i peu de pàgina
@@ -136,6 +135,19 @@
 \author{Eric Guisado, Raúl Alonso}
 
 \begin{document}
+
+%% PGF set
+\pgfplotsset{
+    standard/.style={%Axis format configuration
+        axis x line=middle,
+        axis y line=middle,
+        enlarge x limits=0.15,
+        enlarge y limits=0.15,
+        every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+        every axis y label/.style={at={(current axis.above origin)},anchor=north east},
+        every axis plot post/.style={mark options={fill=white}}
+        }
+    }
 
 \thispagestyle{empty}
 
@@ -165,7 +177,7 @@ Si el senyal d’entrada x[n] té longitud $L_x$, indicar quina seria la longitu
 El senyal de sortida y[n] es calcula com 
 
 $$
-y[n]=\lbrace x\ast h\rbrace[n]=\sum\limits_{j=0}^{L-1} h[j]x[n-j]
+y[n]=\lbrace x\ast h\rbrace[n]=\sum_{j=0}^{L-1} h[j]x[n-j]
 $$
 
 Suposem que el senyal $x[n]$ comença a $n=k$ i acaba a $n=k+L_x-1$. Els termes de la sortida $y[n]$ seran aquells per als quals hi ha algun $j\in\lbrace 0, 1, ..., L-1\rbrace$ tal que $n-j\in \lbrace k, k+1, ..., k+L_x-1\rbrace$, és a dir, $k\leqslant n-j \leqslant k+L_x-1 \Longleftrightarrow k+j\leqslant n \leqslant k+L_x-1+j$. Per tant, els termes de la sortida seran aquells amb $k\leqslant n \leq k+L_x+L-2$. Així doncs, la sortida té longitud $L+L_x-1$.
@@ -173,19 +185,19 @@ Suposem que el senyal $x[n]$ comença a $n=k$ i acaba a $n=k+L_x-1$. Els termes 
 Observem que podem escriure, per a $k\leqslant n \leq k+L_x+L-2$:
 
 $$
-y[n]=\lbrace x\ast h\rbrace[n]=\sum\limits_{j=\max{\lbrace 0, n-k-L_x+1\rbrace}}^{\min{\lbrace L-1,n-k\rbrace}} h[j]x[n-j] = 
+y[n]=\lbrace x\ast h\rbrace[n]=\sum_{j=\max{\lbrace 0, n-k-L_x+1\rbrace}}^{\min{\lbrace L-1,n-k\rbrace}} h[j]x[n-j] = 
 $$
 $$
 \begin{cases}
-\sum\limits_{j=0}^{n-k} h[j]x[n-j]  & \text{si $k \leqslant n \leqslant k + L - 1$} \\
-\sum\limits_{j=0}^{L-1} h[j]x[n-j]  & \text{si $k+L-1 < n < k + L_x - 1$} \\
-\sum\limits_{j=n-k-L_x+1}^{L-1} h[j]x[n-j]  & \text{si $k + L_x - 1 \leqslant n \leqslant k + L + L_x - 2$}
+\sum_{j=0}^{n-k} h[j]x[n-j]  & \text{si $k \leqslant n \leqslant k + L - 1$} \\
+\sum_{j=0}^{L-1} h[j]x[n-j]  & \text{si $k+L-1 < n < k + L_x - 1$} \\
+\sum_{j=n-k-L_x+1}^{L-1} h[j]x[n-j]  & \text{si $k + L_x - 1 \leqslant n \leqslant k + L + L_x - 2$}
 \end{cases}
 $$
 
 Així, es dedueix que el nombre de multiplicacions que cal fer en aplicar directament l'equació de convolució és:
 $$
-2\sum\limits_{i=1}^{L} i + L(L_x - L - 1) = L(L+1)+L(L_x-L-1)=LL_x
+2\sum_{i=1}^{L} i + L(L_x - L - 1) = L(L+1)+L(L_x-L-1)=LL_x
 $$
 
 El nombre de multiplicacions per mostra d'entrada és $\frac{LL_x}{L_x}=L$.
@@ -217,7 +229,7 @@ Així doncs, $P$ ha de ser $P = \big\lceil\frac{L_x}{M}\big\rceil$.
 Per tal que la convolució circular coincideixi amb la convolució lineal s'ha de verificar, per a $n\in\lbrace 0, 1, \cdots, N-1 \rbrace$:
 
 $$
-\sum\limits_{j=0}^{L-1} h[j]x_i[n-j] = \sum\limits_{j=0}^{L-1} h[j]\sum\limits_{r=-\infty}^{\infty}x_i[n-j-rN]
+\sum_{j=0}^{L-1} h[j]x_i[n-j] = \sum_{j=0}^{L-1} h[j]\sum_{r=-\infty}^{\infty}x_i[n-j-rN]
 $$
 
 Per garantir-ho, imposem que, per a $r\neq 0$, $n\in\lbrace 0, 1, \cdots, N-1 \rbrace$, $j\in\lbrace 0, 1, \cdots, L-1 \rbrace$, $n-j-rN\not\in \lbrace 0, 1, \cdots, M-1 \rbrace$.
@@ -239,6 +251,15 @@ $$
 \frac{2N\log_2 N + N}{M} = \frac{2N\log_2 N + N}{N-L+1} = \frac{2\log_2 N + 1}{1-\frac{L-1}{N}}
 $$
 
+\begin{question}
+Escriure una funció en MATLAB {\tt function yb = cc(xb,H)} que calculi la convolució circular de {\tt N} punts de {\tt xb} amb {\tt h}. Suposi que el vector d'entrada {\tt H} ja conté la DFT de {\tt N} punts de {\tt h}. El càlcul del resultat, que s'ha de retornar mitjançant el vector {\tt yb}, s'ha de calcular com la IDFT de {\tt N} punts:
+$$
+yb[n] = IDFT_N [Xb[k]H[k]].
+$$
+Creï la funció ``process''. Aquest funció tindrà la següent capçalera: {\tt function y = process(x,h,N)}.
+\end{question}
+
+Les dues funcions es troben en els fitxers {\tt cc.m} i {\tt process.m}, respectivament.
 
 \begin{question}
 Quina és l'expressió matemàtica corresponent a la DFT de $N$ punts d'un senyal sinusoïdal de pulsació discreta $\Omega_0=2\pi\frac{k_0}{N}$ (essent $k_0$ un número enter)?
@@ -252,30 +273,46 @@ $$
 
 La DFT de $N$ punts del senyal $x[n]=\sin(2\pi\frac{k_0}{N}n)$, $n=0,1,\cdots, N-1$ ve donada per:
 
-$$X[k] = \sum\limits_{n=0}^{N-1}\sin(2\pi\frac{k_0}{N}n)e^{-j2\pi\frac{k}{N}n} = \sum\limits_{n=0}^{N-1}\Big(\frac{e^{j2\pi\frac{k_0}{N}n}-e^{-j2\pi\frac{k_0}{N}n}}{2j}\Big)e^{-j2\pi\frac{k}{N}n}=
+$$X[k] = \sum_{n=0}^{N-1}\sin(2\pi\frac{k_0}{N}n)e^{-j2\pi\frac{k}{N}n} = \sum_{n=0}^{N-1}\Big(\frac{e^{j2\pi\frac{k_0}{N}n}-e^{-j2\pi\frac{k_0}{N}n}}{2j}\Big)e^{-j2\pi\frac{k}{N}n}=
 $$
 $$
-=\frac{1}{2j}\Big(\sum\limits_{n=0}^{N-1}e^{-j2\pi\frac{(k-k_0)}{N}n}+\sum\limits_{n=0}^{N-1}e^{-j2\pi\frac{(k+k_0)}{N}n}\Big)=
+=\frac{1}{2j}\Big(\sum_{n=0}^{N-1}e^{-j2\pi\frac{(k-k_0)}{N}n}-\sum_{n=0}^{N-1}e^{-j2\pi\frac{(k+k_0)}{N}n}\Big)=
 $$
 $$
 \begin{cases}
--jN & \text{si $k=k_0=N-k_0$ (només pot passar si $k_0 = N/2$)} \\
--j\frac{N}{2} & \text{si $k=k_0\neq N-k_0$} \\
--j\frac{N}{2} & \text{si $k=N-k_0\neq k_0$} \\
-0 & \text{altrament}
+0                 & \text{si $k=k_0=N-k_0$ (només pot passar si $k_0 = N/2$)} \\
+-j\frac{N}{2}     & \text{si $k=k_0\neq N-k_0$} \\
++j\frac{N}{2}     & \text{si $k=N-k_0\neq k_0$} \\
+0                 & \text{altrament}
 \end{cases}
 $$
 En efecte, per a $k\in\lbrace 0,1,\cdots,N-1\rbrace$, $k\neq k_0$, $e^{-j2\pi\frac{(k-k_0)}{N}}\neq 1$, i per tant,
 $$
-\sum\limits_{n=0}^{N-1}e^{-j2\pi\frac{(k-k_0)}{N}n}=\frac{1-e^{-j2\pi\frac{(k-k_0)}{N}N}}{1-e^{-j2\pi\frac{(k-k_0)}{N}}} = 0,
+\sum_{n=0}^{N-1}e^{-j2\pi\frac{(k-k_0)}{N}n}=\frac{1-e^{-j2\pi\frac{(k-k_0)}{N}N}}{1-e^{-j2\pi\frac{(k-k_0)}{N}}} = 0,
 $$
 i, anàlogament, si $k\in\lbrace 0,1,\cdots,N-1\rbrace$, $k\neq N-k_0$,
 $$
-\sum\limits_{n=0}^{N-1}e^{-j2\pi\frac{(k+k_0)}{N}n}=\frac{1-e^{-j2\pi\frac{(k+k_0)}{N}N}}{1-e^{-j2\pi\frac{(k+k_0)}{N}}} = 0
+\sum_{n=0}^{N-1}e^{-j2\pi\frac{(k+k_0)}{N}n}=\frac{1-e^{-j2\pi\frac{(k+k_0)}{N}N}}{1-e^{-j2\pi\frac{(k+k_0)}{N}}} = 0
 $$
 
 \begin{question}
+Dibuixi la DFT d'aquest senyal sinusoïdal.
 \end{question}
+
+\begin{figure}%Unit step squence
+   \begin{tikzpicture}[scale = 0.6]
+       \draw [->] (-2,0) -- (8,0);       
+       \draw [->] (0,-2) -- (0,8);
+       \node at (2,0) {x};
+       \node at (2,-0.4) {$k_0$};
+       \draw [thick] (2,0) -- (2,5);
+       \node at (2,5) {\textbullet}
+       \node at (5.5,0) {x};
+       \node at (5.5,-0.4) {$N-k_0$};
+       \draw [thick] (5.5,0) -- (5.5,5);
+       \node at (5.5,5) {\textbullet}
+   \end{tikzpicture}
+\end{figure}
 
 \begin{question}
 Expliqui qualitativament l’efecte d’aplicar “zero-padding” i una finestra no rectangular sobre la DFT.
