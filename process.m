@@ -4,6 +4,7 @@ Lx = length(x);
 H = fft(h,N);
 M = N - L + 1;
 P = floor(Lx/M);
+
 y=zeros(1, L+Lx-1);
 for i = 0 : P - 1
     xb = x(i*M+1:(i+1)*M);
