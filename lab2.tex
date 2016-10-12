@@ -383,6 +383,8 @@ $v$       & temps de {\tt process} [s]  \\
 19        & 0.907             \\
 \hline
 \end{tabular}
+\caption{Taula dels diferents temps d'execució de la funció {\tt process} en funció de la potència $v$ de 2 ($N = 2^v$).}
+\label{tb:temps}
 \end{table}
 
 \begin{figure}[h]
@@ -392,9 +394,17 @@ $v$       & temps de {\tt process} [s]  \\
   xlabel=$v$,
   ylabel=temps de {\tt process} (s)]
 \addplot table [y=temps, x=v]{data.dat};
+\addplot [
+    domain=11:19, 
+    samples=100, 
+    color=red,
+    very thick,
+]
+{(2*x+1)/(1-(102/(2^x)))};
 \addlegendentry{temps}
 \end{axis}
 \end{tikzpicture}
+\caption{Representació gràfica dels valors de la taula \ref{tb:temps}. }
 \end{figure}
 
 Hem obtingut els dos productes de convolució $y_1$ i $y_2$ amb les funcions {\tt conv} i {\tt process} respectivament. Hem pogut comprovar que els dos vectors resultants són (pràcticament) iguals, ja que l'error quadràtic, és a dir, la norma 2 del vector $k = y_1 - y_2$ és, per a $v=15$, $\epsilon = \Vert k \Vert_2 = 1.1684 \cdot 10^{-10}$.
