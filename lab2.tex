@@ -367,6 +367,8 @@ Aplicar diferents tipus de finestres, si es fa adientment, ens pot permetre resa
 Generi un vector aleatori $h$ de longitud $L=103$ mostres i un altre vector aleatori $x$ de longitud $L_x=107$. Per generar els vectors pot utilitzar la funció {\tt randn} de MATLAB. Mitjançant les instruccions {\tt tic} i {\tt toc} de MATLAB pot mesurar aproximadament el temps que passa entre l’execució de les dues instruccions. Compari la durada de l’execució de cada mètode per a diferents valors de $v$ on $N=2^v$ (essent $N$ una potència de 2 suficientment gran) i comprovi que els dos resultats de la convolució y1 i y2 són iguals.
 \end{activity}
 
+A la taula \ref{tb:temps} representem els diferents temps d'execució (aproximats) de la funció {\tt process} per a diferents valors de $v$ ($N = 2^v$). Ho representem gràficament a la figura \ref{fig:temps}. Tot i que els temps d'execució tinguin petits alts i baixos en la zona central de la gràfica, assumim que aquests provenen del fet que l'ordinador està realitzant altres processos paral·lelament que modifiquen el temps d'execució. Per tant, aquesta corba hauria de ser més semblant a una forma d'`U', i en el mig trobaríem el temps d'execució mínim, per a un valor òptim de $v$. 
+
 \begin{table}
 \centering
 \begin{tabular}{|c|c|}
@@ -400,11 +402,13 @@ $v$       & temps de {\tt process} [s]  \\
     color=red,
     very thick,
 ]
-{(2*x+1)/(1-(102/(2^x)))};
+{0.03*(2*x+1)/(1-(102/(2^x)))};
 \addlegendentry{temps}
+\addlegendentry{corba teòrica}
 \end{axis}
 \end{tikzpicture}
-\caption{Representació gràfica dels valors de la taula \ref{tb:temps}. }
+\caption{Representació gràfica dels valors de la taula \ref{tb:temps}.}
+\label{fig:temps}
 \end{figure}
 
 Hem obtingut els dos productes de convolució $y_1$ i $y_2$ amb les funcions {\tt conv} i {\tt process} respectivament. Hem pogut comprovar que els dos vectors resultants són (pràcticament) iguals, ja que l'error quadràtic, és a dir, la norma 2 del vector $k = y_1 - y_2$ és, per a $v=15$, $\epsilon = \Vert k \Vert_2 = 1.1684 \cdot 10^{-10}$.
