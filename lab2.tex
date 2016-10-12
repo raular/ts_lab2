@@ -433,4 +433,87 @@ $v$       & temps de {\tt process} [s]  \\
 
 Hem obtingut els dos productes de convolució $y_1$ i $y_2$ amb les funcions {\tt conv} i {\tt process} respectivament. Hem pogut comprovar que els dos vectors resultants són (pràcticament) iguals, ja que l'error quadràtic, és a dir, la norma 2 del vector $k = y_1 - y_2$ és, per a $v=15$, $\epsilon = \Vert k \Vert_2 = 1.1684 \cdot 10^{-10}$.
 
+\begin{activity}
+Utilitzant la funció “load” de MATLAB, carregui el fitxer XX.mat. Després de carregar el fitxer, el senyal $x$ estarà disponible al workspace de MATLAB per a poder operar amb ell. Sabent que el senyal $x$ s’ha obtingut mitjançant un procés de mostreig prenent com a freqüència de mostreig $fs = 8 kHz$, porti a terme les següents activitats:
+\begin{enumerate}[-]
+\item Dibuixi el senyal $x$.
+\item Quina és la duració del senyal $x$ en número de mostres i en segons?
+\item Pot escoltar el so dels dos tons fent: wavplay(x,fs).
+\item Obtingui la DFT de x (X[k]) i dibuixi el seu mòdul.
+\item Mitjançant l’anàlisi del mòdul de la DFT de x, respongui a les següents qüestions:
+\begin{enumerate}[$\circ$]
+\item Trobi els índexs (valors de k) per a cadascun dels 4 pics de la DFT (pot utilitzar
+la funció max de MATLAB).
+\item Obtingui les freqüències digitals corresponents als dos pics detectats.
+\item Quines són les freqüències analògiques (en Hz) corresponents a la freqüències
+digitals anteriors?
+\item Quina és la tecla corresponent al senyal x utilitzant la Figura 1?
+\item Quina és l’amplitud dels pics de la DFT?
+\item A partir del resultat anterior, calculi l’amplitud dels dos tons utilitzats en el
+senyal x.
+\end{enumerate}
+\end{enumerate}
+\end{activity}
+
+Hem carregat el fitxer N1.MAT. El vector $x$ que ens donen, amb $1024$ mostres, és el resultat de mostrejar un senyal amb període de mostreig $T=\frac{1}{8000}\,s$. Per tant, la separació temporal entre mostres és $T$. La representació del senyal es pot veure a la figura \ref{fig:senyalx}.
+\\
+
+\begin{figure}
+\includegraphics[scale=0.7]{senyalx.eps} 
+\caption{Senyal $x$ al domini del temps.}
+\label{fig:senyalx}
+\end{figure}
+
+La durada del senyal en mostres és $1024$. En temps, la seva durada és $\frac{1024}{8000}\,s=0,128\,s$.
+\\
+
+A la figura \ref{fig:moddft} podem observar la representació de la DFT de $8000$ punts de $x$, $X[k]$. Com podem veure, aquesta presenta quatre pics, que es troben a les posicions $k=941$ ($X[941] = 3,71-j511,46$, $\vert X[941]\vert=511,48$), $k=1336$ ($X[1336] = 2,88-j511,33$, $\vert X[1336]\vert=511,34$), $k=6664$ ($X[6664] = 3,71+j511,46$, $\vert X[6664]\vert=511,34$) i $7059$ ($X[7059] = 3,71+j511,46$, $\vert X[7059]\vert=511,48$). (Com que el senyal $x$ és real, $X[k] = X[8000-k]^\ast$, i, per tant, $\vert X[k]\vert = \vert X[8000-k]\vert$.)
+\\
+
+\begin{figure}
+\includegraphics[scale=0.7]{moddft2.eps} 
+\caption{Representació del mòdul de $X[k]$.}
+\label{fig:moddft}
+\end{figure}
+
+La freqüència digital corresponent a cada índex $k$ de la DFT és $\frac{2\pi}{8000}k$, $k=0,1,\ldots, 7999$. Les freqüències digitals corresponents als pics són, doncs, $\frac{941}{4000}\pi$, $\frac{167}{500}\pi$, $\frac{833}{500}\pi$, $\frac{7059}{4000}\pi$. Com que estem treballant amb freqüències digitals, les dues últimes es podrien canviar per $-\frac{167}{500}\pi$ i $-\frac{941}{4000}\pi$.
+\\
+
+Recordem que la relació entre la freqüència digital i la freqüència analògica és $\Omega=\omega T$, on $\Omega$ és la freqüència digital, $\omega$ la freqüència analògica i $T$ el període de mostreig.
+\\
+
+Així doncs, les freqüències analògiques són $f_1=\frac{\omega_1}{2\pi T}=941\, Hz$  i $f_2=\frac{\omega_2}{2\pi T}=1336\, Hz$.
+\\
+
+Observant la Figura 1 del guió de la pràctica, la tecla pulsada és el zero.
+\\
+
+Tenint en compte la qüestió 2.6 i la linealitat de la DFT, $X[k]$ és gairebé la DFT d'un senyal discret de la forma:
+$$
+x[n] = A_1 \sin(2\pi\frac{941}{8000}n) + A_2 \sin(2\pi\frac{1336}{8000}n)
+$$
+(ho seria exactament si només tinguéssim els quatre pics), que és el senyal que s'obté mostrejant amb període $T=\frac{1}{8000}\,s$ ($x[n] = x(nT)$) un senyal analògic de la forma:
+$$
+x(t) = A_1 \sin(2\pi\, 941t) + A_2 \sin(2\pi\, 1336t)
+$$
+La petita distorsió que s'observa respecte el resultat esperat és deu probablement a l'existència de soroll i potser també a un petit desfasament.
+\\
+
+Les amplituds de la DFT als pics són $X[941] = 3,71-j511,46$, $X[1336] = 2,88-j511,33$, $X[6664] = 3,71+j511,46$ i $X[7059] = 3,71+j511,46$. En mòdul, les amplituds són $\overline{A_1}=511,48$ ($k=941,7059$) i $\overline{A_2}=511,34$ ($k=1336,6664$).
+\\
+
+Segons la qüestió 2.6, assumint que el senyal discret és exactament de la forma:
+$$
+x[n] = A_1 \sin(2\pi\frac{941}{8000}n) + A_2 \sin(2\pi\frac{1336}{8000}n),
+$$
+hauríem de tenir:
+$$
+\overline{A_1}=A_1\frac{8000}{2}=4000\,A_1,\quad \quad \overline{A_2}=A_2\frac{8000}{2}=4000\,A_2
+$$
+
+Amb els valors que hem obtingut per a $\overline{A_1}$ i $\overline{A_2}$, es té:
+$$
+A_1=\frac{\overline{A_1}}{4000}=0,12787,\quad\quad A_2=\frac{\overline{A_2}}{4000}=0,12784
+$$
+és a dir, $\overline{A_1}\approx\overline{A_2}\approx0,128$. 
 \end{document}
