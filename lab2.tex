@@ -367,9 +367,15 @@ En aquest apartat comentarem breument el que férem al laboratori.
 
 En primer lloc, connectàrem un dels generadors de senyals a l'oscil·loscopi i a l'analitzador de freqüències  i generàrem un senyal rectangular de freqüència ?. Per observar-lo a l'analitzador de freqüències haguérem d'ajustar la freqüència central i el rang de freqüències que volíem observar. 
 
-Com sabem, al domini de la freqüència un senyal rectangular periòdic de freqüència $omega_0$ és un tren de deltes centrades als múltiples parells de la freqüència $omega_0$. En canvi, l'espectre de freqüències que observàrem, a més dels pics corresponents a aquestes freqüències, presentava pics més petits als múltiples senars de $omega_0$, i un cert soroll que s'estenia per tot el rang de freqüències, degut principalment a que el senyal generat no era un senyal rectangular periòdic perfecte (en particular, que el valor absolut del màxim del senyal rectangular no coincidís amb el mínim explicaria l'aparició dels pics secundaris).
+Com sabem, al domini de la freqüència, en mòdul, un senyal rectangular periòdic de freqüència $\omega_0$ és una suma de deltes centrades als múltiples parells de la freqüència $\omega_0$ ($\omega = 2k\omega_0$) i d'àrea $\frac{4}{2k\omega_0}$, és a dir:
 
-Tot seguit férem el mateix amb un senyal sinusoïdal.
+$$
+\vert X(\omega)\vert = \sum_{k = -\infty}^{+\infty} \frac{4}{2k\omega_0}\delta(\omega-2k\omega_0)
+$$
+
+En canvi, l'espectre de freqüències que observàrem, a més dels pics corresponents a aquestes freqüències, presentava pics més petits als múltiples senars de $\omega_0$, i un cert soroll que s'estenia per tot el rang de freqüències, degut principalment a que el senyal generat no era un senyal rectangular periòdic perfecte (en particular, que el valor absolut del màxim del senyal rectangular no coincidís amb el del mínim explicaria l'aparició dels pics secundaris).
+
+Tot seguit férem el mateix amb un senyal sinusoïdal. 
 
 \subsection{Part 1}
 
