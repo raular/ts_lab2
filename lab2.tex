@@ -298,8 +298,10 @@ Quina és l'expressió matemàtica corresponent a la DFT de $N$ punts d'un senya
 En primer lloc, observem que podem suposar $k_0\in\lbrace 0,1,\cdots,N-1\rbrace$, ja que, si $k_0=qN+r$, amb $q\in\mathbb{Z}$ i $r\in\lbrace 0,1,\cdots,N-1\rbrace$, llavors:
 
 $$
-\sin(2\pi\frac{k_0}{N}n) = \sin(2\pi qn + 2\pi\frac{r}{N}n) = \sin(2\pi\frac{r}{N}n) \quad \forall n\in\mathbb{Z}.
+A\sin(2\pi\frac{k_0}{N}n) = A\sin(2\pi qn + 2\pi\frac{r}{N}n) = A\sin(2\pi\frac{r}{N}n) \quad \forall n\in\mathbb{Z}.
 $$
+
+De fet, suposarem $k_0\neq 0$. Altrament, $A\sin(2\pi\frac{k_0}{N}n)=0$ $\forall n\in\mathbb{Z}$, i, per tant, $X[k]=0$ $\forall k\in\lbrace 0,1,\ldots,N-1\rbrace$.
 
 La DFT de $N$ punts del senyal $x[n]=\sin(2\pi\frac{k_0}{N}n)$, $n=0,1,\cdots, N-1$ ve donada per:
 
@@ -364,18 +366,59 @@ Aplicar diferents tipus de finestres, si es fa adientment, ens pot permetre resa
 \subsection{Part 0}
 
 En aquest apartat comentarem breument el que férem al laboratori.
+\\
 
-En primer lloc, connectàrem un dels generadors de senyals a l'oscil·loscopi i a l'analitzador de freqüències  i generàrem un senyal rectangular de freqüència ?. Per observar-lo a l'analitzador de freqüències haguérem d'ajustar la freqüència central i el rang de freqüències que volíem observar. 
+En primer lloc, connectàrem un dels generadors de senyals a l'oscil·loscopi i a l'analitzador de freqüències  i generàrem un senyal rectangular periòdic de freqüència ?. Per observar-lo a l'analitzador de freqüències haguérem d'ajustar la freqüència central i el rang de freqüències que volíem observar. 
+\\
 
-Com sabem, al domini de la freqüència, en mòdul, un senyal rectangular periòdic de freqüència $\omega_0$ és una suma de deltes centrades als múltiples parells de la freqüència $\omega_0$ ($\omega = 2k\omega_0$) i d'àrea $\frac{4}{2k\omega_0}$, és a dir:
-
+Com sabem, al domini de la freqüència, en mòdul, un senyal rectangular periòdic de freqüència $\omega_0$, és a dir, l'extensió periòdica del senyal:
 $$
-\vert X(\omega)\vert = \sum_{k = -\infty}^{+\infty} \frac{4}{2k\omega_0}\delta(\omega-2k\omega_0)
+x(t) = 
+\begin{cases}
+A        & \text{si $0\leqslant t<\frac{T}{2}$} \\
+-A       & \text{si $\frac{T}{2}\leqslant t<T$}
+\end{cases}
+$$
+és una suma de deltes centrades als múltiples senars de la freqüència $\omega_0$ ($\omega = (2k+1)\omega_0$), és a dir:
+$$
+\vert X(\omega)\vert = A\sum_{k = -\infty}^{+\infty} \frac{4}{2k+1}\delta(\omega-(2k+1)\omega_0)
 $$
 
-En canvi, l'espectre de freqüències que observàrem, a més dels pics corresponents a aquestes freqüències, presentava pics més petits als múltiples senars de $\omega_0$, i un cert soroll que s'estenia per tot el rang de freqüències, degut principalment a que el senyal generat no era un senyal rectangular periòdic perfecte (en particular, que el valor absolut del màxim del senyal rectangular no coincidís amb el del mínim explicaria l'aparició dels pics secundaris).
+En canvi, l'espectre de freqüències que observàrem, a més dels pics corresponents a aquestes freqüències, presentava pics més petits als múltiples parells de $\omega_0$, i un cert soroll que s'estenia per tot el rang de freqüències, degut principalment a que el senyal generat no era un senyal rectangular periòdic perfecte (en particular, que el valor absolut del màxim del senyal rectangular no coincidís amb el del mínim explicaria l'aparició dels pics secundaris).
+\\
 
 Tot seguit férem el mateix amb un senyal sinusoïdal. 
+\\
+
+A continuació, connectàrem ambdós generadors de senyals, un com a generador del senyal portador (una sinusoide amb freqüència $f_c=200\,kHz$) i l'altre com a modulador (sinusoide amb freqüència $f_m=10\,kHz << f_c$).
+\\
+
+Siguin $x_c(t)=A_c\sin(2\pi f_c t)$ i $x_m(t)=A_m\sin(2\pi f_m t+\phi)$ el senyal portador i el senyal modulador, respectivament. La modulació consisteix en multiplicar el senyal portador per $m(t)=\mu+x_m(t)$. Observem que $m(t) = \mu + \frac{A_m}{2j}\big[e^{j\phi} e^{j2\pi f_m t}-e^{-j\phi} e^{-j2\pi f_m t}\big]$.
+Llavors, si $X_c(\omega)$ és la transformada del senyal portador, la transformada del senyal resultant és:
+$$
+X_s(\omega)=\mu X(\omega) + \frac{A_m}{2j}\big[e^{j\phi} X(\omega-\omega_m)-e^{-j\phi} X(\omega+\omega_m)\big]
+$$
+on hem definit $\omega_m = 2\pi f_m$.
+\\
+
+Tenint en compte que:
+$$
+X_c(\omega)=-j\pi[\delta(\omega-\omega_c)-\delta(\omega+\omega_c)]
+$$
+amb $\omega_c=2\pi f_c$,
+$$
+\vert X_s(\omega)\vert = \mu\pi[\delta(\omega-\omega_c)-\delta(\omega+\omega_c)]+\frac{A_m\pi}{2}[ \delta(\omega-\omega_m -\omega_c) + \delta(\omega+\omega_m -\omega_c) + \delta(\omega-\omega_m +\omega_c) + \delta(\omega-\omega_m +\omega_c)]
+$$
+\\
+
+Per tant, per a $\omega>0$, tenim un pic central a $\omega_c$ i dos més petits (si $\mu<\frac{A_m}{2}$) situats a $\omega_c+\omega_m$ i $\omega_c-\omega_m$, i el mateix, canviant els signes, per a $\omega<0$.
+
+Això, amb un cert soroll i una certa distorsió, és el que poguérem veure a l'analitzador de freqüències.
+\\
+
+Finalment, connectàrem l'analitzador al senyal de ràdio i ajustàrem la freqüència central i el rang adientment per poder observar l'espectre de les emissores de ràdio i poder sintonitzar algunes d'aquestes.
+\\
+
 
 \subsection{Part 1}
 
