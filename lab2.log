@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.25)  16 OCT 2016 21:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.8.25)  17 OCT 2016 22:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1257,37 +1257,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 400--403
  []
 
 
-Overfull \hbox (24.44379pt too wide) detected at line 411
-\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 X[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/1
-0.95 !\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 j \OT1/cmr/m/n/10.95 = \OML/cmm/m
-/it/10.95 ^^V^^Y\OT1/cmr/m/n/10.95 [\OML/cmm/m/it/10.95 ^^N\OT1/cmr/m/n/10.95 (
-\OML/cmm/m/it/10.95 ! \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 ![]\OT1/cmr/m
-/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 ^^N\OT1/cmr/m/n/10.95 (\
-OML/cmm/m/it/10.95 ! \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 ![]\OT1/cmr/m/n/1
-0.95 )] + [][\OML/cmm/m/it/10.95 ^^N\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ! \
-OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 ![] \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm
-/m/it/10.95 ![]\OT1/cmr/m/n/10.95 ) + \OML/cmm/m/it/10.95 ^^N\OT1/cmr/m/n/10.95
- (\OML/cmm/m/it/10.95 ! \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 ![] \OMS/cmsy/
-m/n/10.95 ^^@ \OML/cmm/m/it/10.95 ![]\OT1/cmr/m/n/10.95 ) + \OML/cmm/m/it/10.95
- ^^N\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ! \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/
-m/it/10.95 ![] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 ![]\OT1/cmr/m/n/10.95 )
- + \OML/cmm/m/it/10.95 ^^N\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ! \OMS/cmsy/m
-/n/10.95 ^^@ \OML/cmm/m/it/10.95 ![] \OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 !
-[]\OT1/cmr/m/n/10.95 )]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 411--413
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 416--418
+Underfull \hbox (badness 10000) in paragraph at lines 414--416
 
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 419--421
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 422--424
 
  []
 
@@ -1302,26 +1282,27 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: The counter will not be printed.
-             The label is: - on input line 497.
+             The label is: - on input line 502.
 
 
-Overfull \hbox (11.39046pt too wide) in paragraph at lines 496--497
+Overfull \hbox (11.39046pt too wide) in paragraph at lines 501--502
 [][]\OT1/cmr/bx/n/10.95 Activitat 2. []Uti-lit-zant la fun-ci^^So \lo-ad" de MA
 T-LAB, car-re-gui el fit-xer XX.mat.
  []
 
+[6]
 
 LaTeX Warning: The counter will not be printed.
-             The label is: $\circ $ on input line 503.
+             The label is: $\circ $ on input line 508.
 
-[6]
-Overfull \hbox (16.84734pt too wide) in paragraph at lines 507--509
+
+Overfull \hbox (16.84734pt too wide) in paragraph at lines 512--514
 []\OT1/cmr/bx/n/10.95 Quines s^^Son les freq^^?u^^Rencies anal^^Rogiques (en Hz
 ) cor-res-po-nents a la freq^^?u^^Rencies
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 517--519
+Underfull \hbox (badness 10000) in paragraph at lines 522--524
 
  []
 
@@ -1333,24 +1314,25 @@ Package epstopdf Info: Source file: <senyalx.eps>
 (epstopdf)                    size: 12468 bytes
 (epstopdf)             Command: <repstopdf --outfile=senyalx-eps-converted-to.p
 df senyalx.eps>
-(epstopdf)             \includegraphics on input line 521.
+(epstopdf)             \includegraphics on input line 526.
 Package epstopdf Info: Output file is already uptodate.
-<senyalx-eps-converted-to.pdf, id=119, 578.16pt x 434.62375pt>
+<senyalx-eps-converted-to.pdf, id=114, 578.16pt x 434.62375pt>
 File: senyalx-eps-converted-to.pdf Graphic file (type pdf)
 
 <use senyalx-eps-converted-to.pdf>
-Package pdftex.def Info: senyalx-eps-converted-to.pdf used on input line 521.
+Package pdftex.def Info: senyalx-eps-converted-to.pdf used on input line 526.
 (pdftex.def)             Requested size: 404.70924pt x 304.23454pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 526--528
+Underfull \hbox (badness 10000) in paragraph at lines 531--533
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 529--531
+Underfull \hbox (badness 10000) in paragraph at lines 534--536
 
  []
 
+[7]
 Package epstopdf Info: Source file: <moddft2.eps>
 (epstopdf)                    date: 2016-10-13 00:16:14
 (epstopdf)                    size: 148270 bytes
@@ -1359,59 +1341,60 @@ Package epstopdf Info: Source file: <moddft2.eps>
 (epstopdf)                    size: 52874 bytes
 (epstopdf)             Command: <repstopdf --outfile=moddft2-eps-converted-to.p
 df moddft2.eps>
-(epstopdf)             \includegraphics on input line 533.
+(epstopdf)             \includegraphics on input line 538.
 Package epstopdf Info: Output file is already uptodate.
-<moddft2-eps-converted-to.pdf, id=121, 578.16pt x 434.62375pt>
+ <moddft2-eps-converted-to.pdf, id=134, 578.16pt x 434.62375pt>
 File: moddft2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use moddft2-eps-converted-to.pdf>
-Package pdftex.def Info: moddft2-eps-converted-to.pdf used on input line 533.
+Package pdftex.def Info: moddft2-eps-converted-to.pdf used on input line 538.
 (pdftex.def)             Requested size: 404.70924pt x 304.23454pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 538--540
+Underfull \hbox (badness 10000) in paragraph at lines 543--545
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 541--543
-
- []
-
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 544--546
+Underfull \hbox (badness 10000) in paragraph at lines 546--548
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 547--549
+Underfull \hbox (badness 10000) in paragraph at lines 549--551
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 557--560
+Underfull \hbox (badness 10000) in paragraph at lines 552--554
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 561--563
+Underfull \hbox (badness 10000) in paragraph at lines 562--565
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 578.
+
+Underfull \hbox (badness 10000) in paragraph at lines 566--568
+
+ []
+
 [8] [9 <./senyalx-eps-converted-to.pdf> <./moddft2-eps-converted-to.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 585.
+
 [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 578.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 585.
  (./lab2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 578.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 578.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 585.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 585.
 Package rerunfilecheck Info: File `lab2.out' has not changed.
 (rerunfilecheck)             Checksum: 16DC1341C5ADF788271B86B0B2BC3274;215.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 578.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 585.
  ) 
 Here is how much of TeX's memory you used:
  26959 strings out of 493029
  578072 string characters out of 6136234
- 935773 words of memory out of 5000000
+ 937773 words of memory out of 5000000
  29934 multiletter control sequences out of 15000+600000
  11660 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1432,7 +1415,7 @@ hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on lab2.pdf (10 pages, 291003 bytes).
+Output written on lab2.pdf (10 pages, 292022 bytes).
 PDF statistics:
  230 PDF objects out of 1000 (max. 8388607)
  195 compressed objects within 2 object streams

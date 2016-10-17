@@ -287,7 +287,7 @@ for i = 0 : P - 1
 end
 xb = x(P*M+1:Lx);
 yb = cc(xb,H);
-y(P*M+1:P+Lx-1) = y(P*M+1:P+Lx-1) + yb;
+y(P*M+1:P+Lx-1) = y(P*M+1:P+Lx-1) + yb(1:L+Lx-P*M-1);
 end
 \end{lstlisting}
 
@@ -303,18 +303,18 @@ $$
 
 De fet, suposarem $k_0\neq 0$. Altrament, $A\sin(2\pi\frac{k_0}{N}n)=0$ $\forall n\in\mathbb{Z}$, i, per tant, $X[k]=0$ $\forall k\in\lbrace 0,1,\ldots,N-1\rbrace$.
 
-La DFT de $N$ punts del senyal $x[n]=\sin(2\pi\frac{k_0}{N}n)$, $n=0,1,\cdots, N-1$ ve donada per:
+La DFT de $N$ punts del senyal $x[n]=A\sin(2\pi\frac{k_0}{N}n)$, $n=0,1,\cdots, N-1$ ve donada per:
 
-$$X[k] = \sum_{n=0}^{N-1}\sin(2\pi\frac{k_0}{N}n)e^{-j2\pi\frac{k}{N}n} = \sum_{n=0}^{N-1}\Big(\frac{e^{j2\pi\frac{k_0}{N}n}-e^{-j2\pi\frac{k_0}{N}n}}{2j}\Big)e^{-j2\pi\frac{k}{N}n}=
+$$X[k] = A\sum_{n=0}^{N-1}\sin(2\pi\frac{k_0}{N}n)e^{-j2\pi\frac{k}{N}n} = A\sum_{n=0}^{N-1}\Big(\frac{e^{j2\pi\frac{k_0}{N}n}-e^{-j2\pi\frac{k_0}{N}n}}{2j}\Big)e^{-j2\pi\frac{k}{N}n}=
 $$
 $$
-=\frac{1}{2j}\Big(\sum_{n=0}^{N-1}e^{-j2\pi\frac{(k-k_0)}{N}n}-\sum_{n=0}^{N-1}e^{-j2\pi\frac{(k+k_0)}{N}n}\Big)=
+=A\frac{1}{2j}\Big(\sum_{n=0}^{N-1}e^{-j2\pi\frac{(k-k_0)}{N}n}-\sum_{n=0}^{N-1}e^{-j2\pi\frac{(k+k_0)}{N}n}\Big)=
 $$
 $$
 \begin{cases}
 0                 & \text{si $k=k_0=N-k_0$ (només pot passar si $k_0 = N/2$)} \\
--j\frac{N}{2}     & \text{si $k=k_0\neq N-k_0$} \\
-+j\frac{N}{2}     & \text{si $k=N-k_0\neq k_0$} \\
+-jA\frac{N}{2}     & \text{si $k=k_0\neq N-k_0$} \\
++jA\frac{N}{2}     & \text{si $k=N-k_0\neq k_0$} \\
 0                 & \text{altrament}
 \end{cases}
 $$
@@ -368,7 +368,7 @@ Aplicar diferents tipus de finestres, si es fa adientment, ens pot permetre resa
 En aquest apartat comentarem breument el que férem al laboratori.
 \\
 
-En primer lloc, connectàrem un dels generadors de senyals a l'oscil·loscopi i a l'analitzador de freqüències  i generàrem un senyal rectangular periòdic de freqüència ?. Per observar-lo a l'analitzador de freqüències haguérem d'ajustar la freqüència central i el rang de freqüències que volíem observar. 
+En primer lloc, connectàrem un dels generadors de senyals a l'oscil·loscopi i a l'analitzador de freqüències  i generàrem un senyal rectangular periòdic de freqüència $1\,MHz$. Per observar-lo a l'analitzador de freqüències haguérem d'ajustar la freqüència central i el rang de freqüències que volíem observar. 
 \\
 
 Com sabem, al domini de la freqüència, en mòdul, un senyal rectangular periòdic de freqüència $\omega_0$, és a dir, l'extensió periòdica del senyal:
@@ -379,7 +379,7 @@ A        & \text{si $0\leqslant t<\frac{T}{2}$} \\
 -A       & \text{si $\frac{T}{2}\leqslant t<T$}
 \end{cases}
 $$
-és una suma de deltes centrades als múltiples senars de la freqüència $\omega_0$ ($\omega = (2k+1)\omega_0$), és a dir:
+amb $T=\frac{2\pi}{\omega_0}$, és una suma de deltes centrades als múltiples senars de la freqüència $\omega_0$ ($\omega = (2k+1)\omega_0$), és a dir:
 $$
 \vert X(\omega)\vert = A\sum_{k = -\infty}^{+\infty} \frac{4}{2k+1}\delta(\omega-(2k+1)\omega_0)
 $$
@@ -387,7 +387,7 @@ $$
 En canvi, l'espectre de freqüències que observàrem, a més dels pics corresponents a aquestes freqüències, presentava pics més petits als múltiples parells de $\omega_0$, i un cert soroll que s'estenia per tot el rang de freqüències, degut principalment a que el senyal generat no era un senyal rectangular periòdic perfecte (en particular, que el valor absolut del màxim del senyal rectangular no coincidís amb el del mínim explicaria l'aparició dels pics secundaris).
 \\
 
-Tot seguit férem el mateix amb un senyal sinusoïdal. 
+Tot seguit férem el mateix amb un senyal sinusoïdal. En aquest cas, si la freqüència del senyal sinusoïdal és $\omega_0$, al domini de la freqüència hauríem de tenir dues deltes centrades a $\omega_0$ i $-\omega_0$.  Poguérem observar el pic a $\omega_0$, però en aquest cas la distorsió era prou gran.
 \\
 
 A continuació, connectàrem ambdós generadors de senyals, un com a generador del senyal portador (una sinusoide amb freqüència $f_c=200\,kHz$) i l'altre com a modulador (sinusoide amb freqüència $f_m=10\,kHz << f_c$).
@@ -407,7 +407,10 @@ X_c(\omega)=-j\pi[\delta(\omega-\omega_c)-\delta(\omega+\omega_c)]
 $$
 amb $\omega_c=2\pi f_c$,
 $$
-\vert X_s(\omega)\vert = \mu\pi[\delta(\omega-\omega_c)-\delta(\omega+\omega_c)]+\frac{A_m\pi}{2}[ \delta(\omega-\omega_m -\omega_c) + \delta(\omega+\omega_m -\omega_c) + \delta(\omega-\omega_m +\omega_c) + \delta(\omega-\omega_m +\omega_c)]
+\vert X_s(\omega)\vert = \mu\pi[\delta(\omega-\omega_c) + \delta(\omega+\omega_c)]+
+$$
+$$
++\frac{A_m\pi}{2}[ \delta(\omega-\omega_m -\omega_c) + \delta(\omega+\omega_m -\omega_c) + \delta(\omega-\omega_m +\omega_c) + \delta(\omega-\omega_m +\omega_c)]
 $$
 \\
 
@@ -426,7 +429,7 @@ Finalment, connectàrem l'analitzador al senyal de ràdio i ajustàrem la freqü
 Generi un vector aleatori $h$ de longitud $L=10^3$ mostres i un altre vector aleatori $x$ de longitud $L_x=10^7$. Per generar els vectors pot utilitzar la funció {\tt randn} de MATLAB. Mitjançant les instruccions {\tt tic} i {\tt toc} de MATLAB pot mesurar aproximadament el temps que passa entre l’execució de les dues instruccions. Compari la durada de l’execució de cada mètode per a diferents valors de $v$ on $N=2^v$ (essent $N$ una potència de 2 suficientment gran) i comprovi que els dos resultats de la convolució y1 i y2 són iguals.
 \end{activity}
 
-A la taula \ref{tb:temps} representem els diferents temps d'execució (aproximats) de la funció {\tt process} per a diferents valors de $v$ ($N = 2^v$). Ho representem gràficament a la figura \ref{fig:temps}. Tot i que els temps d'execució tinguin petits alts i baixos en la zona central de la gràfica, assumim que aquests provenen del fet que l'ordinador està realitzant altres processos paral·lelament que modifiquen el temps d'execució. Per tant, aquesta corba hauria de ser més semblant a una forma d'`U', i en el mig trobaríem el temps d'execució mínim, per a un valor òptim de $v$.
+A la taula \ref{tb:temps} representem els diferents temps d'execució (aproximats) de la funció {\tt process} per a diferents valors de $v$ ($N = 2^v$). Amb la funció {\tt conv} el temps d'execució fou $0,834\, s$. Ho representem gràficament a la figura \ref{fig:temps}. Tot i que els temps d'execució tinguin petits alts i baixos en la zona central de la gràfica, assumim que aquests provenen del fet que l'ordinador està realitzant altres processos paral·lelament que modifiquen el temps d'execució. Per tant, aquesta corba hauria de ser més semblant a una forma d'`U', i en el mig trobaríem el temps d'execució mínim, per a un valor òptim de $v$.
 
 A la figura \ref{fig:teoric} hem representat el nombre d'operacions teòric de la funció {\tt process} en funció de $v$, segons la fórmula del nombre d'operacions que hem obtingut a la qüestió 2.3 de l'estudi previ:
 $$
@@ -435,6 +438,8 @@ $$
 $$
 
 Podeu comprovar com les corbes de les figures \ref{fig:temps} i \ref{fig:teoric} són molt semblants.
+
+Amb la funció {\tt conv} el temps d'execució fou $0,834\, s$. Per tant, veiem que, triant $N$ adientment, la funció {\tt process} és més ràpida.
 
 \begin{table}
 \centering
@@ -541,7 +546,7 @@ La freqüència digital corresponent a cada índex $k$ de la DFT és $\frac{2\pi
 Recordem que la relació entre la freqüència digital i la freqüència analògica és $\Omega=\omega T$, on $\Omega$ és la freqüència digital, $\omega$ la freqüència analògica i $T$ el període de mostreig.
 \\
 
-Així doncs, les freqüències analògiques són $f_1=\frac{\omega_1}{2\pi T}=941\, Hz$  i $f_2=\frac{\omega_2}{2\pi T}=1336\, Hz$.
+Així doncs, les freqüències analògiques són $f_1=\frac{\omega_1}{2\pi}=941\, Hz$  i $f_2=\frac{\omega_2}{2\pi}=1336\, Hz$.
 \\
 
 Observant la Figura 1 del guió de la pràctica, la tecla pulsada és el zero.
@@ -558,7 +563,7 @@ $$
 La petita distorsió que s'observa respecte el resultat esperat és deu probablement a l'existència de soroll i potser també a un petit desfasament.
 \\
 
-Les amplituds de la DFT als pics són $X[941] = 3,71-j511,46$, $X[1336] = 2,88-j511,33$, $X[6664] = 3,71+j511,46$ i $X[7059] = 3,71+j511,46$. En mòdul, les amplituds són $\overline{A_1}=511,48$ ($k=941,7059$) i $\overline{A_2}=511,34$ ($k=1336,6664$).
+Les amplituds de la DFT als pics són $X[941] = 3,71-j511,46$, $X[1336] = 2,88-j511,33$, $X[6664] = 3,71+j511,46$ i $X[7059] = 3,71+j511,46$. En mòdul, les amplituds són $\overline{B_1}=511,48$ ($k=941,7059$) i $\overline{B_2}=511,34$ ($k=1336,6664$).
 \\
 
 Segons la qüestió 2.6, assumint que el senyal discret és exactament de la forma:
@@ -567,12 +572,14 @@ x[n] = A_1 \sin(2\pi\frac{941}{8000}n) + A_2 \sin(2\pi\frac{1336}{8000}n),
 $$
 hauríem de tenir:
 $$
-\overline{A_1}=A_1\frac{8000}{2}=4000\,A_1,\quad \quad \overline{A_2}=A_2\frac{8000}{2}=4000\,A_2
+\overline{B_1}=A_1\frac{8000}{2}=4000\,A_1,\quad \quad \overline{B_2}=A_2\frac{8000}{2}=4000\,A_2
 $$
 
-Amb els valors que hem obtingut per a $\overline{A_1}$ i $\overline{A_2}$, es té:
+Amb els valors que hem obtingut per a $\overline{B_1}$ i $\overline{B_2}$, es té:
 $$
-A_1=\frac{\overline{A_1}}{4000}=0,12787,\quad\quad A_2=\frac{\overline{A_2}}{4000}=0,12784
+A_1=\frac{\overline{B_1}}{4000}=0,12787,\quad\quad A_2=\frac{\overline{B_2}}{4000}=0,12784
 $$
-és a dir, $\overline{A_1}\approx\overline{A_2}\approx0,128$. 
+és a dir, $\overline{B_1}\approx\overline{B_2}\approx0,128$.
+
+Això no obstant, observem que realment el senyal $x$ té una amplitud bastant més gran. Podem atribuir aquesta diferència a errors numèrics (en particular, la presència dels pics dóna lloc a una forta expansió dels errors).
 \end{document}
